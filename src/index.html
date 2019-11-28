@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/styles/font-awesome.css">
+    <link rel="stylesheet" href="./assets/styles/bootstrap.css">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<script src="https://m.58ycf.com/Scripts/jquery.min.js"></script>
+
+<body>
+
+    <div class="y-container">
+        <div class="gbimg"></div>
+
+        <div class="layout">
+            <div class="nav">
+                <!-- <div class="admin-wrapper"></div>
+                <i class="icon-reorder"></i> -->
+                <div class="logo">
+                    <img src="./assets/imgs/logo.png" alt="" srcset="">
+                </div>
+                <ul>
+                    <li>
+                        <a class="toolbar">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <span>39</span>
+                        </a>
+
+                        <ul>
+                            <li>消息列表</li>
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a class="toolbar">
+                            <i class="glyphicon glyphicon-cog"></i>
+                        </a>
+                        <ul class="themeSetting">
+                            <li>
+                                <ul class="bgColor">
+
+                                    <li><a style="background-color: #CC0000"></a></li>
+
+                                    <li><a style="background-color: #955700"></a></li>
+
+                                    <li><a style="background-color: #A48A00"></a></li>
+
+                                    <li><a style="background-color: #FF9600"></a></li>
+
+                                    <li><a style="background-color: #FFCC00"></a></li>
+
+                                    <li><a style="background-color: #FFF000"></a></li>
+
+                                    <li><a style="background-color: #C7CD00"></a></li>
+
+                                    <li><a style="background-color: #6FAB04"></a></li>
+
+                                    <li><a style="background-color: #027902"></a></li>
+
+                                    <li><a style="background-color: #0092DB"></a></li>
+
+                                    <li><a style="background-color: #5D8CC2"></a></li>
+
+                                    <li><a style="background-color: #005EC2"></a></li>
+
+                                    <li><a style="background-color: #64128C"></a></li>
+
+                                    <li><a style="background-color: #980E66"></a></li>
+
+                                    <li><a style="background-color: #ED0175"></a></li>
+
+                                    <li><a style="background-color: #000000"></a></li>
+
+                                    <li><a style="background-color: #380000"></a></li>
+
+                                    <li><a style="background-color: #585858"></a></li>
+
+                                    <li><a style="background-color: #9a67cb"></a></li>
+
+                                </ul>
+
+                            </li>
+                            <li class="divider" />
+                            <li>
+                                <div class="bgImg">
+                                    <div>
+                                        <span>隐藏背景图片</span>
+                                        <input type="checkbox" checked>
+                                    </div>
+                                    <ul>
+                                        <li><img src="./assets/imgs/bgImg_1.jpg" alt=""></li>
+                                        <li><img src="./assets/imgs/bgImg_2.jpg" alt=""></li>
+                                        <li><img src="./assets/imgs/bgImg_3.jpg" alt=""></li>
+                                        <li><img src="./assets/imgs/bgImg_4.jpg" alt=""></li>
+                                        <li><img src="./assets/imgs/bgImg_5.jpg" alt=""></li>
+                                        <li><img src="./assets/imgs/bgImg_6.jpg" alt=""></li>
+                                        <li><img src="./assets/imgs/bgImg_7.png" alt=""></li>
+                                        <li><img src="./assets/imgs/bgImg_8.png" alt=""></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="divider" />
+                            <li>
+                                <a href="#" class="magnetManager"><i class="glyphicon glyphicon-wrench"></i>磁贴设置</a>
+                            </li>
+                        </ul>
+
+
+                    </li>
+                    <li>
+
+                        <a class="toolbar">
+                            <i class="glyphicon glyphicon-plus-sign"></i>
+                        </a>
+                        <ul class="apps ">
+                            <li class="divider"></li>
+                            <li>
+                                <h4>请拖到桌面</h4>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a class="userinfo">
+                            <img src="./assets/imgs/tx.png">
+                            <span>
+                                Welcome
+                                <br>
+                                用户名
+                            </span>
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+                        <ul class="userinfos">
+                            <li>
+                                <a><i class="ace-icon fa fa-user"></i>个人中心</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a><i class="ace-icon fa fa-power-off"></i>退出 </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="content-container">
+                    <div class="model"></div>
+                    <div class="tc del">
+                        <div class="arrow"></div>
+                        <h3>磁铁删除</h3>
+                        <div class="tc-content">
+                            <p>确认删除该桌面磁贴？</p>
+                            <div class="btns">
+                                <button>取消</button>
+                                <button class="qr">确认</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tc edit">
+                        <div class="arrow"></div>
+                        <h3>磁铁设置</h3>
+                        <div class="tc-content">
+                            <h3>文本内容</h3>
+                            <p magnet="title"></p>
+                            <h3>图标尺寸</h3>
+                            <div>
+                                行:
+                                <select magnet="rowSpan">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                                列:
+                                <select magnet="colSpan">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+
+                            </div>
+                            <h3>字体大小</h3>
+                            <div>
+                                <select magnet="titleFontSize">
+                                    <option value="12px">12px</option>
+                                    <option value="14px">14px</option>
+                                    <option value="16px">16px</option>
+                                    <option value="18px">18px</option>
+                                    <option value="24px">24px</option>
+                                </select>
+                            </div>
+                            <h3>对齐文本</h3>
+                            <div class="btns">
+
+                                <div magnet="titleAlign">
+                                    <button type="button" data="left" class="glyphicon glyphicon-align-left"></button>
+                                    <button type="button" data="center"
+                                        class="glyphicon glyphicon-align-center"></button>
+                                    <button type="button" data="right" class="glyphicon glyphicon-align-right"></button>
+
+                                </div>
+                                <div magnet="titlePosition">
+                                    <button type="button" data="top">Top</button>
+                                    <button type="button" data="bottom">Bottom</button>
+                                </div>
+
+                            </div>
+                            <h3>背景颜色</h3>
+                            <ul class="boxcolor" magnet="bgColor">
+                                <li class="Purple"></li>
+                                <li class="violet"></li>
+                                <li class="DeliciousRed"></li>
+                                <li class="Red"></li>
+                                <li class="JuicyOrange"></li>
+                                <li class="ZestyGreen"></li>
+                                <li class="MintyAqua"></li>
+                                <li class="BoldBlue"></li>
+                                <li class="Black"></li>
+                                <li class="Gray"></li>
+                            </ul>
+                            <h3>文本颜色</h3>
+                            <ul class="boxcolor" magnet="titleColor">
+                                <li class="Purple"></li>
+                                <li class="violet"></li>
+                                <li class="DeliciousRed"></li>
+                                <li class="JuicyOrange"></li>
+                                <li class="ZestyGreen"></li>
+                                <li class="MintyAqua"></li>
+                                <li class="BoldBlue"></li>
+                                <li class="Black"></li>
+                                <li class="Gray"></li>
+                                <li class="White"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll">
+                    <div></div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="close"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
