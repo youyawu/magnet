@@ -30,15 +30,21 @@ class MagnetManager {
     private tcDel: JQuery<HTMLElement> | null = null
     private tcEdit: JQuery<HTMLElement> | null = null
     private box: JQuery<HTMLElement> | null = null
+    private appLastLi: JQuery<HTMLElement> | null = null
+    private nav: JQuery<HTMLElement> | null = null
     public dragWrapperWidth = 0
     private scrollWidth = 0
     private scrollBarWidth = 0
     private dragContainerHeight = 0
     public timer = 0
     private Magnets: JQuery<HTMLElement>[] = []
+    private appCount = 0
     public init(wrapper: JQuery<HTMLElement>, items: Magnet[]) {
+        this.appCount = items.length;
         this.dragWrapper = wrapper.find('.content');
-        this.appContainer = wrapper.find('.apps');
+        this.nav = wrapper.find('.nav');
+        this.appContainer = this.nav.find('.apps');
+        this.appLastLi = this.appContainer.find('li:last');
         this.dragContainer = wrapper.find('.content-container').mousedown(e => drag.containerDown(e));
         this.scrollContainer = this.dragContainer.next();
         this.scrollBar = this.scrollContainer.find('div');
@@ -49,10 +55,10 @@ class MagnetManager {
         drag.init(this.dragContainer);
         grid.init(this.dragContainer.width()!, this.dragContainerHeight = this.dragContainer.height()!, Math.max(...items.map(({ col = 0, colSpan = 0 }) => col + colSpan)));
         items.forEach(x => this.initMagnet(x));
+        this.checkAppList();
     }
     private initMagnet(magnet: Magnet) {
         if (!magnet.rowSpan) return this._initMagnet(magnet);
-        grid.set(magnet, 1);
         const div = this.createMagnet(magnet),
             a = $(`<a target="_blank" href="${magnet.url}" >${magnet.title}</a>`).addClass(magnet.titlePosition).css({
                 color: magnet.titleColor,
@@ -105,6 +111,7 @@ class MagnetManager {
         }).appendTo(this.dragContainer!);
         i.trigger('fontsize_change');
         this.Magnets.push(div);
+        grid.set(magnet, 1);
         return div;
     }
     private _initMagnet(magnet: Magnet) {
@@ -152,6 +159,7 @@ class MagnetManager {
                 this.Magnets.forEach((x, i) => x === div && this.Magnets.splice(i, 1));
                 const newdiv = this.initMagnet(magnet);
                 newdiv && newdiv.trigger('reset').trigger('save');
+                this.checkAppList();
             },
             showMask() {
                 div.find('.mask').fadeIn();
@@ -167,7 +175,10 @@ class MagnetManager {
                 div.data('tc', tc.data('magnet', null).trigger('init', magnet).data('magnet', div).trigger('setPosition'));
             },
             showBox: () => {
-                if (magnet.type === 2) this.box!.addClass('t');
+                if (magnet.type === 2) {
+                    this.box!.addClass('t');
+                    this.nav!.css('background-color', magnet.bgColor);
+                }
                 if (!iframe.attr('src') || magnet.refresh) iframe.attr('src', magnet.url);
                 iframe.show().siblings('iframe').hide();
                 this.box!.fadeIn(800).addClass('open');
@@ -179,8 +190,12 @@ class MagnetManager {
         }).data('magnet', magnet);
         return div;
     }
+    private checkAppList() {
+        if (this.Magnets.length === this.appCount) return this.appLastLi!.addClass('none');
+        this.appLastLi!.removeClass('none');
+    }
     private bind() {
-        this.box!.find('>.close').click(() => this.box!.removeClass('open').fadeOut(1e3, () => this.box!.removeClass('t')));
+        this.box!.find('>.close').click(() => this.nav!.css('background-color', 'rgba(255, 255, 255, 0.4)') && this.box!.removeClass('open').fadeOut(1e3, () => this.box!.removeClass('t')));
         this.tcDel!.find('button').click(() => !this.tcDel!.fadeOut(() => this.tcDel!.data('magnet', null))).last().click(() => {
             const div = this.tcDel!.data('magnet') as JQuery<HTMLElement> | null;
             div && div.data('tc', null).trigger('setSize', [0, 0]).trigger('create');

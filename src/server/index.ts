@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use(bodyparser.json(), bodyparser.urlencoded({ extended: false }));
 
-const magnets = Array(10).fill(0).map((x, i) => ({
+const magnets = Array(3).fill(0).map((x, i) => ({
         id: i, // 标示
         icon: 'icon-glass', // 图标
         title: 'test' + i, // 名称

@@ -70,14 +70,15 @@ a {
     height: 100%;
     position: relative;
     > .nav {
-      background: rgba(255, 255, 255, 0.4);
+      background-color: rgba(255, 255, 255, 0.4);
       height: 50px;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       padding: 0 5px;
-
+      transition: background-color 1s;
+      z-index: 11;
       // .admin-wrapper {
       //   float: left;
       //   width: 71px;
@@ -232,6 +233,20 @@ a {
                 color: #777;
                 font-size: 18px;
                 text-align: center;
+                &:first-child {
+                  display: block;
+                }
+                &:last-child {
+                  display: none;
+                }
+              }
+              &.none h4 {
+                &:first-child {
+                  display: none;
+                }
+                &:last-child {
+                  display: block;
+                }
               }
             }
             &.themeSetting li {

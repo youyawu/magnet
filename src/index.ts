@@ -76,7 +76,7 @@ $(async () => {
         magnetManager.showMask();
     });
     const userinfo = $('.userinfo').click(() => {
-        const ul = userinfo.next().slideDown();
+        const ul = userinfo.next().slideToggle();
         $(document).one('click', () => {
             ul.slideUp();
         });
