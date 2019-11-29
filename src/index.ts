@@ -1,9 +1,23 @@
 import $ from 'jquery';
-import { post } from './request';
+import { post, Post } from './utils/request';
+import { getTimeSpan, dateFormat } from './utils';
 import { debounce } from 'lodash';
 import './styles';
 import magnetManager from './modules/index';
+interface IMsg {
+    title: string,
+    createDate: string,
+    msgType: number,
+    sendUserName: string
+}
+interface IMsgList {
+    data: IMsg[]
+    pageIndex: number
+    pageTotal: number
+    rowTotal: number
+}
 $(async () => {
+    await Post('/loginSubmit', { loginId: 18337971872, loginPwd: 123456 });
     const container = $('.y-container'),
         gbimg = $('>.gbimg', container),
         themeSetting = $('.themeSetting', container).on('hidden', () => {
@@ -69,4 +83,13 @@ $(async () => {
         return false;
 
     });
+    const { data: msglist, rowTotal } = await Post<IMsgList>('/sysmsg/getSysMsgList', { isRead: false, pageIndex: 0, pageSize: 3 });
+    const msgs_arr: JQuery<HTMLElement>[] = [];
+    msglist.forEach((x: any) => {
+        const li = $(`<li><a href="javascript:void(0);" ><div class="msg_title"><strong>${x.title}</strong>. <small>${getTimeSpan(x.createDate)}</small></div><small class="fl">${dateFormat(x.createDate, 'yyyy.MM.dd - hh:mm')}</small> <small class="fr">from:${x.msgType === 1 ? x.sendUserName : '系统消息'}</small></a></li>`);
+
+        msgs_arr.push(li, $('<li>').addClass('divider'));
+    });
+    const msga = $('.msgs', container).prepend(msgs_arr).prev();
+    if (rowTotal) { msga.append($('<span>').text(rowTotal)) }
 });

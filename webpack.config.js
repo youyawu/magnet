@@ -91,11 +91,12 @@ module.exports = {
         host: '0.0.0.0',
         port: 8083,
         open: true,
-        // proxy: {
-        //     '/api': {
-        //         target: 'http://192.168.100.254:9300/',
-        //         changeOrigin: true
-        //     }
-        // }
+        proxy: {
+            '/oneportal': {
+                target: 'http://192.168.100.254:9300/',
+                // pathRewrite: { '^/api': '' },
+                changeOrigin: true
+            }
+        }
     }
 };

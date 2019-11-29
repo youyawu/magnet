@@ -2,7 +2,7 @@ import $ from 'jquery';
 import drag from './drag';
 import grid from './grid';
 import { debounce } from 'lodash';
-import { post } from '../request';
+import { post } from '../utils/request';
 export interface Magnet {
     id: string // 标示
     row: number, // 所在行
